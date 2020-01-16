@@ -1,4 +1,5 @@
 // implement your API here
+require('dotenv').config();
 const express = require("express");
 const Hubs = require("./data/db");
 const cors = require("cors");
@@ -143,7 +144,7 @@ server.delete("/api/users/:id", (req, res) => {
     });
 });
 
-const port = 8001;
+const port = process.env.PORT || 8001;
 
 server.listen(port, () =>
   console.log(`\n*** Server is running on port ${port}`)
