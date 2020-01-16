@@ -46,7 +46,7 @@ const EditModal = ({current}) => {
     // }
     const onSubmit= (e) => {
         e.preventDefault();
-        axios.put(`http://localhost:8001/api/users/${id}`, user)
+        axios.put(`https://node-project1-test.herokuapp.com/api/users/${id}`, user)
         .then( res => { 
             M.toast({html: `${res.data.name} is updated`})
             console.log(res.data);

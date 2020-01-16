@@ -18,7 +18,7 @@ function App() {
     
     axios
 
-      .get("http://localhost:8001/api/users")
+      .get("https://node-project1-test.herokuapp.com/api/users")
       .then(res => {
         setUsers(res.data);
       })
