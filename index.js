@@ -1,12 +1,14 @@
 // implement your API here
 const express = require("express");
 const Hubs = require("./data/db");
+const cors = require("cors");
 
 // init express
 
 // get all users
 const server = express();
 server.use(express.json()); // parse json file
+server.use(cors());
 
 server.get("/api/users", (req, res) => {
   Hubs.find() // resolve Promises
@@ -45,7 +47,7 @@ server.get("/api/users/:id", (req, res) => {
     });
 });
 // creata a user
-server.post("/api/users/", (req, res) => {
+server.post("/api/users", (req, res) => {
   const user = req.body;
   if (user.name && user.bio) {
     Hubs.insert(user) // resolve Promises
@@ -99,7 +101,12 @@ server.put("/api/users/:id", (req, res) => {
             errorMessage: `the User with the specific ID (${id}) does not exist.`
           });
       });
+  } else{
+    res.status(400).json({
+      errorMessage: 'the user information is not complete. Update failed!'
+    })
   }
+
 });
 
 // delete a user
